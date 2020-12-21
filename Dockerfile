@@ -15,6 +15,7 @@ RUN sh -c 'sed -e "s,^enabled=.$,enabled=0," -i /etc/yum.repos.d/fedora-*.repo' 
     jq \
     make \
     procps-ng \
+    python3-pip \
     rsync \
     sshuttle \
     unzip \
