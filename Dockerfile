@@ -26,7 +26,7 @@ ADD ./container-setup/install /container-setup/install
 WORKDIR /container-setup/install
 
 ARG osv4client=openshift-client-linux-4.3.12.tar.gz
-ARG rosaversion=v0.0.16
+ARG rosaversion=v0.1.3
 ARG awsclient=awscli-exe-linux-x86_64.zip
 ARG osdctlversion=v0.2.0
 ARG veleroversion=v1.5.1
