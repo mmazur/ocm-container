@@ -26,8 +26,8 @@ RUN sh -c 'sed -e "s,^enabled=.$,enabled=0," -i /etc/yum.repos.d/fedora-*.repo' 
 ARG osv4client=openshift-client-linux-4.3.12.tar.gz
 ARG rosaversion=v0.1.3
 ARG awsclient=awscli-exe-linux-x86_64.zip
-ARG osdctlversion=v0.2.0
-ARG veleroversion=v1.5.1
+ARG osdctlversion=v0.3.0
+ARG veleroversion=v1.5.2
 ARG ocmversion=v0.1.45
 
 COPY container-setup /container-setup
