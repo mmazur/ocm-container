@@ -4,26 +4,24 @@ LABEL maintainer="Mariusz Mazur <mmazur@redhat.com>"
 
 ENV I_AM_IN_CONTAINER="I-am-in-container"
 
-RUN yum -y install \
+
+# Don't use updates repo (or anything other than base)
+RUN sh -c 'sed -e "s,^enabled=.$,enabled=0," -i /etc/yum.repos.d/fedora-*.repo' \
+    && dnf install -y \
     bash-completion \
     findutils \
     fzf \
     git \
-    golang \
     jq \
     make \
     procps-ng \
-    python-pip \
-    python3-requests-kerberos \
     rsync \
     sshuttle \
+    unzip \
     vim-enhanced \
     wget \
-    && yum clean all;
+    && dnf clean all
 
-ADD ./container-setup/install /container-setup/install
-
-WORKDIR /container-setup/install
 
 ARG osv4client=openshift-client-linux-4.3.12.tar.gz
 ARG rosaversion=v0.1.3
@@ -32,6 +30,9 @@ ARG osdctlversion=v0.2.0
 ARG veleroversion=v1.5.1
 ARG ocmversion=v0.1.45
 
+COPY container-setup /container-setup
+
+WORKDIR /container-setup/install
 RUN ./install-rosa.sh
 RUN ./install-ocm.sh
 RUN ./install-oc.sh
@@ -39,14 +40,10 @@ RUN ./install-aws.sh
 RUN ./install-kube_ps1.sh
 RUN ./install-osdctl.sh
 RUN ./install-velero.sh
-RUN ./install-cluster-login.sh
 
-ADD ./container-setup/utils /container-setup/utils
 WORKDIR /container-setup/utils
-RUN ./install-utils.sh
-
 ENV PATH "$PATH:/root/utils"
-RUN rm -rf /container-setup
+RUN ./install-utils.sh && rm -rf /container-setup
 
 WORKDIR /root
 ENTRYPOINT ["/bin/bash"]
