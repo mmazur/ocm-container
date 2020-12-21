@@ -1,5 +1,6 @@
 #FROM ocm-container
 FROM fedora:latest
+LABEL maintainer="Mariusz Mazur <mmazur@redhat.com>"
 
 ENV I_AM_IN_CONTAINER="I-am-in-container"
 
