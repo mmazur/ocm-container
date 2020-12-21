@@ -30,6 +30,7 @@ ARG rosaversion=v0.1.3
 ARG awsclient=awscli-exe-linux-x86_64.zip
 ARG osdctlversion=v0.2.0
 ARG veleroversion=v1.5.1
+ARG ocmversion=v0.1.45
 
 RUN ./install-rosa.sh
 RUN ./install-ocm.sh
