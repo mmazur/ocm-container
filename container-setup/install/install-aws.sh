@@ -9,10 +9,10 @@ echo "in container";
 
 #export awsclient=awscli-exe-linux-x86_64.zip
 
-mkdir /usr/local/aws;
-pushd /usr/local/aws;
+pushd /tmp
 wget -q https://awscli.amazonaws.com/${awsclient}
 unzip ${awsclient}
 rm ${awsclient}
 ./aws/install;
+rm -rf aws
 popd;
